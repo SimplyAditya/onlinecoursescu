@@ -57,7 +57,7 @@ const Courses = () => {
   ]
 
   return (
-    <div className='w-full h-auto bg-[url("/courses_bg.png")] bg-cover bg-center flex flex-col items-center justify-center text-black font-bold text-3xl p-10'>
+    <div id="courses" className='w-full h-auto bg-[url("/courses_bg.png")] bg-cover bg-center flex flex-col items-center justify-center text-black font-bold text-3xl p-10'>
       <div className="w-5/6 flex flex-col items-start justify-center text-4xl text-red-600 gap-4 pb-8">
         Courses
         <p className="text-lg text-black font-normal text-justify">

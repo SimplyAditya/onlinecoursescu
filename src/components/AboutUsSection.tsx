@@ -3,7 +3,7 @@ import React from 'react'
 
 const AboutUsSection = () => {
   return (
-    <div>
+    <div id="about">
         <main className='flex items-center justify-center bg-gray-100 text-[#FF0000] font-bold pt-16 pb-4 text-xl md:text-3xl'>
           Collaborating With Industry Leaders
         </main>
