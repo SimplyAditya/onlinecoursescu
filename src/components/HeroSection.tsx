@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
 
@@ -29,9 +30,9 @@ const HeroSection = () => {
             technology, and comprehensive support services ensure that you receive a world-class 
             education that aligns with your goals.
           </p>
-          <button className="bg-red-600 text-white px-8 py-3 rounded-md text-lg hover:bg-red-700 transition-colors">
-            Enroll Now
-          </button>
+<button onClick={() => document.getElementById("enquiry-form")?.scrollIntoView({ behavior: 'smooth' })} className="bg-red-600 text-white px-8 py-3 rounded-md text-lg hover:bg-red-700 transition-colors">
+  Enroll Now
+</button>
         </div>
       </div>
 

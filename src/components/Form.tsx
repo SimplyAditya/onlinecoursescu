@@ -64,7 +64,7 @@ const EnquiryForm = () => {
   return (
     <>
       {formSubmitted && <SubmissionCard />}
-      <div className="bg-red-600 p-8 rounded-3xl max-w-md mx-auto">
+<div id="enquiry-form" className="bg-red-600 p-8 rounded-3xl max-w-md mx-auto">
         <h2 className="text-white text-center text-2xl font-bold mb-6">
           Enquire Now for C.U DISTANCE EDUCATION & ONLINE PROGRAM
         </h2>
