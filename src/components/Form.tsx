@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import SubmissionCard from "./SubmissionCard";
 
 interface FormData {
   name: string;
@@ -22,15 +23,15 @@ const programmes = [
 ];
 
 const EnquiryForm = () => {
-    const [formSubmitted, setFormSubmitted] =useState(false);
-
+  
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     email: "",
     programme: "",
   });
-
+  const [formSubmitted, setFormSubmitted] =useState(false);
+  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -40,14 +41,30 @@ const EnquiryForm = () => {
       [name]: value,
     }));
   };
+  useEffect(() => {
+    if (formSubmitted) {
+      setTimeout(() => {
+        setFormSubmitted(false);
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          programme: "",
+        });
+      }, 3000);
+    }
+  }, [formSubmitted]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission here
     console.log("Form submitted:", formData);
+    setFormSubmitted(true);
   };
 
-  return (
+  return formSubmitted ? (
+    <SubmissionCard />
+  ) : (
     <div className="bg-red-600 p-8 rounded-3xl max-w-md mx-auto">
       <h2 className="text-white text-center text-2xl font-bold mb-6">
         Enquire Now for C.U DISTANCE EDUCATION & ONLINE PROGRAM
