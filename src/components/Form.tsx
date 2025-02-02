@@ -23,15 +23,14 @@ const programmes = [
 ];
 
 const EnquiryForm = () => {
-  
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     email: "",
     programme: "",
   });
-  const [formSubmitted, setFormSubmitted] =useState(false);
-  
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -51,7 +50,7 @@ const EnquiryForm = () => {
           email: "",
           programme: "",
         });
-      }, 3000);
+      }, 2000);
     }
   }, [formSubmitted]);
 
@@ -62,68 +61,69 @@ const EnquiryForm = () => {
     setFormSubmitted(true);
   };
 
-  return formSubmitted ? (
-    <SubmissionCard />
-  ) : (
-    <div className="bg-red-600 p-8 rounded-3xl max-w-md mx-auto">
-      <h2 className="text-white text-center text-2xl font-bold mb-6">
-        Enquire Now for C.U DISTANCE EDUCATION & ONLINE PROGRAM
-      </h2>
+  return (
+    <>
+      {formSubmitted && <SubmissionCard />}
+      <div className="bg-red-600 p-8 rounded-3xl max-w-md mx-auto">
+        <h2 className="text-white text-center text-2xl font-bold mb-6">
+          Enquire Now for C.U DISTANCE EDUCATION & ONLINE PROGRAM
+        </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-3 rounded-md"
-          required
-        />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter Name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full p-3 rounded-md"
+            required
+          />
 
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Enter Phone"
-          value={formData.phone}
-          onChange={handleChange}
-          className="w-full p-3 rounded-md"
-          required
-        />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Enter Phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full p-3 rounded-md"
+            required
+          />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-3 rounded-md"
-          required
-        />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full p-3 rounded-md"
+            required
+          />
 
-        <select
-          name="programme"
-          value={formData.programme}
-          onChange={handleChange}
-          className="w-full p-3 rounded-md bg-white text-gray-600"
-          required
-        >
-          <option value="">-- Select Programme --</option>
-          {programmes.map((program) => (
-            <option key={program} value={program}>
-              {program}
-            </option>
-          ))}
-        </select>
+          <select
+            name="programme"
+            value={formData.programme}
+            onChange={handleChange}
+            className="w-full p-3 rounded-md bg-white text-gray-600"
+            required
+          >
+            <option value="">-- Select Programme --</option>
+            {programmes.map((program) => (
+              <option key={program} value={program}>
+                {program}
+              </option>
+            ))}
+          </select>
 
-        <button
-          type="submit"
-          className="w-full bg-white text-gray-800 p-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
-        >
-          Send
-        </button>
-      </form>
-    </div>
+          <button
+            type="submit"
+            className="w-full bg-white text-gray-800 p-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
+          >
+            Send
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
