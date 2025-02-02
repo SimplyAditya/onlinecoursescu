@@ -26,7 +26,7 @@ const HeroSection = () => {
           </h1>
           <p className="text-white text-lg lg:text-xl mb-8 max-w-xl">
             We believe in breaking down barriers to education, offering accredited programs 
-            that cater to the diverse needs of today's learners. Our expert faculty, cutting-edge 
+            that cater to the diverse needs of today&apos;s learners. Our expert faculty, cutting-edge 
             technology, and comprehensive support services ensure that you receive a world-class 
             education that aligns with your goals.
           </p>
