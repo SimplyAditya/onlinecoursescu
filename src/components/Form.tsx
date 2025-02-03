@@ -30,6 +30,7 @@ const EnquiryForm = () => {
     programme: "",
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -40,6 +41,7 @@ const EnquiryForm = () => {
       [name]: value,
     }));
   };
+
   useEffect(() => {
     if (formSubmitted) {
       setTimeout(() => {
@@ -54,17 +56,27 @@ const EnquiryForm = () => {
     }
   }, [formSubmitted]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    setSubmitting(true);
+    // console.log("Form submitted:", formData);
+    try {
+      await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+    } catch (error) {
+      console.error(error);
+    }
     setFormSubmitted(true);
+    setSubmitting(false);
   };
 
   return (
     <>
       {formSubmitted && <SubmissionCard />}
-<div id="enquiry-form" className="bg-red-600 p-8 rounded-3xl max-w-md mx-auto">
+      <div id="enquiry-form" className="bg-red-600 p-8 rounded-3xl max-w-md mx-auto">
         <h2 className="text-white text-center text-2xl font-bold mb-6">
           Enquire Now for C.U DISTANCE EDUCATION & ONLINE PROGRAM
         </h2>
@@ -79,7 +91,6 @@ const EnquiryForm = () => {
             className="w-full p-3 rounded-md"
             required
           />
-
           <input
             type="tel"
             name="phone"
@@ -89,7 +100,6 @@ const EnquiryForm = () => {
             className="w-full p-3 rounded-md"
             required
           />
-
           <input
             type="email"
             name="email"
@@ -99,7 +109,6 @@ const EnquiryForm = () => {
             className="w-full p-3 rounded-md"
             required
           />
-
           <select
             name="programme"
             value={formData.programme}
@@ -114,12 +123,12 @@ const EnquiryForm = () => {
               </option>
             ))}
           </select>
-
           <button
             type="submit"
+            disabled={submitting}
             className="w-full bg-white text-gray-800 p-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
           >
-            Send
+            {submitting ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
