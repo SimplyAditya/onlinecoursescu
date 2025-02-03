@@ -7,14 +7,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   const { name, phone, email, programme } = req.body;
 
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: "chandigarhonlineuniversity727@gmail.com",
       pass: "fxjksuogadgiqliv",
     },
   });
-  let mailOptions = {
+  const mailOptions = {
     from: `Online Courses CU <chandigarhonlineuniversity727@gmail.com>`,
     to: "chandigarhonlineuniversity727@gmail.com",
     subject: "New Enquiry Details",
